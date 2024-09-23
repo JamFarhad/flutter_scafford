@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_responsiveness/landscape_login.dart';
 
 import 'package:flutter_responsiveness/portriat_login.dart';
 
@@ -34,6 +35,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const PortraitLoginWidget();
+    return Scaffold(
+      body: OrientationBuilder(
+          builder: (context, orientation) => orientation == Orientation.portrait
+              ? const PortraitLoginWidget()
+              : const LandscapeLoginWidget()),
+    );
   }
 }
