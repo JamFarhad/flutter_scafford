@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LandscapeLoginWidget extends StatelessWidget {
   const LandscapeLoginWidget({super.key});
