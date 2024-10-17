@@ -10,6 +10,7 @@ class MyClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final Size(:height, :width) = size;
     Path path = Path();
+    
     path.arcTo(Rect.fromLTWH(0, 0, width, height), degToRadian(startAngle),
         degToRadian(sweepAngle), true);
     return path;
