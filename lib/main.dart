@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_circle_clipper/myClipper.dart';
 
 void main() {
@@ -35,19 +34,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double sweepAngle = 360;
-  double startAngle = 0;
-
+  double sweepAngle = 280;
+  double startAngle = 40;
+  double distance = 20;
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 50), (timer) {
+    Timer.periodic(const Duration(milliseconds: 20), (timer) {
       setState(() {
-        if (sweepAngle < 360) {
-          sweepAngle -= 2;
-          startAngle -= sweepAngle;
+        if (sweepAngle < 359) {
+          sweepAngle += 1;
+          startAngle -= 0.5;
+          distance -= 0.2;
         } else {
-          sweepAngle = 0;
+          sweepAngle = 280;
+          startAngle = 40;
+          distance = 20;
         }
       });
     });
@@ -62,27 +64,89 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
           children: <Widget>[
+            const SizedBox(
+              width: 400,
+            ),
             ClipPath(
               clipper:
-                  MyClipper(sweepAngle: sweepAngle, startAngle: startAngle),
+                  MyClipper2(sweepAngle: sweepAngle, startAngle: startAngle),
               child: Container(
                 height: 200,
                 width: 200,
                 decoration: const BoxDecoration(
-                    color: Colors.amber,
-                    // border: Border.all(color: Colors.black, width: 2),
                     gradient: RadialGradient(colors: [
-                      Colors.amber,
-                      Colors.blue,
-                      Colors.cyan,
-                      Colors.orangeAccent,
-                      Colors.limeAccent,
-                    ], focalRadius: 23)),
+                  Color.fromARGB(212, 255, 255, 255),
+                  Colors.amber,
+                ], focalRadius: 10)),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 105,
+                        ),
+                        Container(
+                          height: 20,
+                          width: 20,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 8,
+                                width: 8,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                              const SizedBox(
+                                width: 1,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )
+            ),
+            SizedBox(
+              width: distance,
+            ),
+            Container(
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 18, 29, 255),
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Container(
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 0, 255, 8),
+                  borderRadius: BorderRadius.circular(20)),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Container(
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                  color: Colors.red, borderRadius: BorderRadius.circular(20)),
+            ),
           ],
         ),
       ),
