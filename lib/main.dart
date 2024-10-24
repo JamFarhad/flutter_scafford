@@ -31,13 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             CustomPaint(
               painter: MyPainter(),
-              child: Container(
+              child: const SizedBox(
                 width: 300,
                 height: 300,
               ),
