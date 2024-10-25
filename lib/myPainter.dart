@@ -37,3 +37,5 @@ class MyPainter extends CustomPainter {
   @override
   bool shouldRebuildSemantics(MyPainter oldDelegate) => false;
 }
+
+

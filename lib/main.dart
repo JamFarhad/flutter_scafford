@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_painter/myPainter.dart';
+import 'package:flutter_custom_painter/clock.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CustomPaint(
-              painter: MyPainter(),
+              painter: MyClockPainter(),
               child: const SizedBox(
                 width: 300,
                 height: 300,
