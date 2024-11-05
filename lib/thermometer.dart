@@ -9,12 +9,12 @@ class MyThermometerPainter extends CustomPainter {
     final Size(:width, :height) = size;
     Path path = Path();
 
-    path.moveTo(width * 0.30, height * 0.8);
-    path.lineTo(width * 0.30, height * 0.1);
-    path.arcToPoint(Offset(width * 0.7, height * 0.1),
+    path.moveTo(width * 0.32, height * 0.8);
+    path.lineTo(width * 0.32, height * 0.1);
+    path.arcToPoint(Offset(width * 0.68, height * 0.1),
         radius: const Radius.circular(10));
-    path.lineTo(width * 0.7, height * 0.8);
-    path.arcToPoint(Offset(width * 0.30, height * 0.8),
+    path.lineTo(width * 0.68, height * 0.8);
+    path.arcToPoint(Offset(width * 0.32, height * 0.8),
         radius: const Radius.circular(50), largeArc: true);
 
     canvas.drawLine(
@@ -203,21 +203,26 @@ class MyThermometerPainter extends CustomPainter {
           ..color = Colors.black
           ..style = PaintingStyle.stroke
           ..strokeWidth = 4);
+    canvas.drawPath(
+        path,
+        Paint()
+          ..color = Colors.white
+          ..style = PaintingStyle.fill);
 
     Path path2 = Path();
 
-    path2.moveTo(width * 0.40, height * 0.84);
+    path2.moveTo(width * 0.40, height * 0.7);
     path2.lineTo(width * 0.40, height * 0.13);
     path2.arcToPoint(Offset(width * 0.6, height * 0.13),
         radius: const Radius.circular(10));
-    path2.lineTo(width * 0.6, height * 0.84);
-    path2.arcToPoint(Offset(width * 0.40, height * 0.84),
-        radius: const Radius.circular(30), largeArc: true);
+    path2.lineTo(width * 0.6, height * 0.7);
+    path2.arcToPoint(Offset(width * 0.40, height * 0.7),
+        radius: const Radius.circular(10));
 
     canvas.drawPath(
         path2,
         Paint()
-          ..color = Colors.grey
+          ..color = const Color.fromARGB(255, 210, 210, 210)
           ..strokeWidth = 3);
 
     const gradient = LinearGradient(
@@ -234,27 +239,32 @@ class MyThermometerPainter extends CustomPainter {
     );
     Path path3 = Path();
 
-    path3.moveTo(width * 0.40, height * 0.84);
-    path3.lineTo(width * 0.40, height * pointValue);
-    path3.arcToPoint(Offset(width * 0.6, height * pointValue),
+    path3.moveTo(width * 0.40, height * 0.75);
+    path3.lineTo(width * 0.40, height *pointValue);
+    path3.arcToPoint(Offset(width * 0.6, height *pointValue),
         radius: const Radius.circular(10));
-    path3.lineTo(width * 0.6, height * 0.84);
-    path3.arcToPoint(Offset(width * 0.40, height * 0.84),
-        radius: const Radius.circular(30), largeArc: true);
+    path3.lineTo(width * 0.6, height * 0.75);
+    path3.arcToPoint(Offset(width * 0.40, height * 0.75),
+        radius: const Radius.circular(10));
 
     canvas.drawPath(
       path3,
       Paint()
         ..shader = gradient.createShader(Rect.fromLTWH(
-            width * 0.40, height * 0.13, width * 0.20, height * 0.84)),
+            width * 0.40, height * 0.13, width * 0.20, height * 0.8)),
     );
+
+    canvas.drawCircle(Offset(width * 0.5, height * 0.902), width * 0.4,
+        Paint()..color = Colors.indigo);
   }
 
   @override
-  bool shouldRepaint(MyThermometerPainter oldDelegate) => oldDelegate.pointValue != pointValue;
+  bool shouldRepaint(MyThermometerPainter oldDelegate) =>
+      oldDelegate.pointValue != pointValue;
 
   @override
-  bool shouldRebuildSemantics(MyThermometerPainter oldDelegate) =>  oldDelegate.pointValue != pointValue;
+  bool shouldRebuildSemantics(MyThermometerPainter oldDelegate) =>
+      oldDelegate.pointValue != pointValue;
 }
 
 /**path.moveTo(width * 0.30, height * 0.8);
