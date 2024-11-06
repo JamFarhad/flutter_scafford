@@ -227,12 +227,11 @@ class MyThermometerPainter extends CustomPainter {
 
     const gradient = LinearGradient(
       colors: [
-        Colors.yellow,
-        Colors.amber,
-        Color.fromARGB(255, 235, 143, 3),
-        Color.fromARGB(255, 235, 123, 3),
-        Color.fromARGB(255, 235, 84, 3),
-        Colors.red
+        Color.fromARGB(255, 112, 134, 255),
+        Color.fromARGB(255, 77, 94, 192),
+        Color.fromARGB(255, 38, 52, 132),
+        Color.fromARGB(255, 29, 42, 115),
+        Color.fromARGB(255, 9, 17, 61),
       ],
       begin: Alignment.bottomCenter,
       end: Alignment.topCenter,
