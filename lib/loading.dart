@@ -19,6 +19,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
   late AnimationController _animationController2;
   late AnimationController _animationController3;
   late AnimationController _animationController4;
+  late AnimationController _animationColorController;
   late Animation<double> _borderRadiusAnimation;
   late Animation<double> _borderRadiusAnimation2;
   late Animation<double> _borderRadiusAnimation3;
@@ -34,6 +35,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
             if (_animationController.isCompleted) {
               _animationController2.forward();
               _animationController.reverse();
+
+              _animationColorController.forward();
             }
           })
           ..addListener(() {
@@ -47,6 +50,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
             if (_animationController2.isCompleted) {
               _animationController3.forward();
               _animationController2.reverse();
+
+              _animationColorController.reverse();
             }
           })
           ..addListener(() {
@@ -59,6 +64,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
             if (_animationController3.isCompleted) {
               _animationController4.forward();
               _animationController3.reverse();
+
+              _animationColorController.forward();
             }
           })
           ..addListener(() {
@@ -71,8 +78,15 @@ class _LoadingWidgetState extends State<LoadingWidget>
             if (_animationController4.isCompleted) {
               _animationController.forward();
               _animationController4.reverse();
+
+              _animationColorController.reverse();
             }
           })
+          ..addListener(() {
+            setState(() {});
+          });
+    _animationColorController =
+        AnimationController(vsync: this, duration: Duration(seconds: second))
           ..addListener(() {
             setState(() {});
           });
@@ -88,20 +102,8 @@ class _LoadingWidgetState extends State<LoadingWidget>
 
     _borderRadiusAnimation4 =
         Tween(begin: 10.0, end: 100.0).animate(_animationController4);
-
-    _colorAnimation = ColorTween(begin: Colors.amber, end: Colors.indigo)
-        .animate(CurvedAnimation(
-            parent: _animationController, curve: const Interval(0.0, 0.25)));
-    _colorAnimation = ColorTween(begin: Colors.indigo, end: Colors.deepPurple)
-        .animate(CurvedAnimation(
-            parent: _animationController2, curve: const Interval(0.0, 0.5)));
-    _colorAnimation = ColorTween(begin: Colors.deepPurple, end: Colors.teal)
-        .animate(CurvedAnimation(
-            parent: _animationController3, curve: const Interval(0.0, 0.75)));
-
-    // if (_animationController.status == AnimationStatus.completed) {
-    //   _animationController.reset();
-    // }
+    _colorAnimation = ColorTween(begin: Colors.teal, end: Colors.deepPurple)
+        .animate(_animationColorController);
   }
 
   @override
@@ -110,6 +112,7 @@ class _LoadingWidgetState extends State<LoadingWidget>
     _animationController2.dispose();
     _animationController3.dispose();
     _animationController4.dispose();
+    _animationColorController.dispose();
     super.dispose();
   }
 
